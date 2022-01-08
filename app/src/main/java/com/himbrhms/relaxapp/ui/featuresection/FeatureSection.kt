@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.himbrhms.relaxapp.ui.data.Feature
+import com.himbrhms.relaxapp.ui.theme.TextWhite
 
 @ExperimentalFoundationApi
 @Composable
@@ -17,6 +18,7 @@ fun FeatureSection(features: List<Feature>) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "Features",
+            color = TextWhite,
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(15.dp)
         )

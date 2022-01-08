@@ -101,11 +101,13 @@ fun GreetingSection(name: String) {
                 modifier = Modifier.fillMaxWidth(fraction = 0.8f),
                 text = "Good morning, $name",
                 style = MaterialTheme.typography.h5,
+                color = TextWhite,
                 softWrap = true
             )
             Text(
                 text = "We wish you have a good day!",
                 style = MaterialTheme.typography.body1,
+                color = AquaBlue,
                 softWrap = true
             )
         }
