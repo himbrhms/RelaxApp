@@ -21,9 +21,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.himbrhms.relaxapp.ui.data.BottomMenuContent
 import com.himbrhms.relaxapp.ui.theme.*
 import com.himbrhms.relaxapp.R
+import com.himbrhms.relaxapp.model.HomeScreenViewModel
+import com.himbrhms.relaxapp.model.TimeOfDay
 import com.himbrhms.relaxapp.ui.bottommenu.BottomMenu
 import com.himbrhms.relaxapp.ui.data.Feature
 import com.himbrhms.relaxapp.ui.featuresection.FeatureSection
@@ -31,7 +34,9 @@ import com.himbrhms.relaxapp.ui.meditationsection.MeditationSection
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    viewModel: HomeScreenViewModel = hiltViewModel()
+) {
     Box(
         modifier = Modifier
             .background(DeepBlue)
@@ -87,7 +92,13 @@ fun HomeScreen() {
 }
 
 @Composable
-fun GreetingSection(name: String) {
+fun GreetingSection(name: String, viewModel: HomeScreenViewModel = hiltViewModel()) {
+    val greeting = when(viewModel.timeOfDay) {
+        TimeOfDay.MORNING -> "Good Morning"
+        TimeOfDay.NOON -> "Hello"
+        TimeOfDay.EVENING -> "Good Evening"
+        else -> "Good Night"
+    }
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -99,7 +110,7 @@ fun GreetingSection(name: String) {
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(fraction = 0.8f),
-                text = "Good morning, $name",
+                text = "$greeting, $name",
                 style = MaterialTheme.typography.h5,
                 color = TextWhite,
                 softWrap = true
